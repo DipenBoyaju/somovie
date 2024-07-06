@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0f1412;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.react-slideshow-container .default-nav {
+  background-color: #FFCB9A;
+  border-radius: 5px;
+  width: 42px;
+  height: 42px;
+  right: 0;
+}
+
+.react-slideshow-container .default-nav:focus {
+  background-color: none;
+}
+
+.react-slideshow-container .default-nav:first-of-type {
+  bottom: 30px;
+  left: 96%;
+}
+
+.react-slideshow-container .default-nav:last-of-type {
+  bottom: 80px;
+  right: 12px;
+}
+
+.react-slideshow-container svg {
+  width: 18px;
+}
+
+
+/* #2C3531 black
+#116466 green
+#D9B08C dark-cream
+#FFCB9A  cream
+#D1E8E2 blueish-white*/

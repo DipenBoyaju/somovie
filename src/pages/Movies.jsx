@@ -1,0 +1,59 @@
+import { Link } from "react-router-dom"
+import MovieCard from "../components/MovieCard"
+import { useGetAllMoviesQuery } from "../apis/MovieApi"
+import { useState } from "react"
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md"
+
+const Movies = () => {
+  const [page, setPage] = useState(1)
+  const { data, isFetching } = useGetAllMoviesQuery({ page });
+
+  if (isFetching) {
+    return <h1>Loading</h1>
+  }
+
+  const handlePrevPage = () => {
+    if (data?.page > 1) {
+      setPage(prevPage => prevPage - 1)
+    }
+  }
+
+  const handleNextPage = () => {
+    if (data?.page < data?.total_pages) {
+      setPage(prevPage => prevPage + 1)
+    } else {
+      setPage(data?.page)
+    }
+  }
+
+
+  return (
+    <section className="container mx-auto">
+      <div className="py-10 px-4 lg:px-0">
+        <div className=""><Link to={'/'}>Home</Link><span className="text-[#D1E8E2]"> / Movies</span></div>
+        <p className="text-4xl font-semibold py-6 text-[#FFCB9A]">Movie</p>
+        <div className="grid lg:grid-cols-6 grid-cols-2 gap-6">
+          {
+            data && data.results.map((item) => {
+              return <MovieCard key={item.id} item={item} />
+            })
+          }
+        </div>
+
+        <div className="flex gap-2 justify-center">
+          <button className={`bg-[#116466] text-white text-2xl py-2 px-3  rounded-lg ${page === 1 ? 'opacity-50 cursor-not-allowed' : ''} `} onClick={() => setPage(1)}><MdKeyboardDoubleArrowLeft /></button>
+          <button className={`bg-[#116466] text-white text-2xl py-2 px-3  rounded-lg ${page === 1 ? 'opacity-50 cursor-not-allowed' : ''} `} onClick={() => handlePrevPage()}><IoIosArrowBack /></button>
+          <div className="flex gap-2">
+            <p className="bg-[#116466] text-white text-2xl w-auto h-full py-2 px-3 text-center rounded-lg cursor-pointer" onClick={() => page > 1 ? setPage(page - 1) : setPage(page)}>{page}</p>
+            <p className="bg-[#116466] text-white text-2xl w-auto h-full py-2 px-3 text-center rounded-lg cursor-pointer" onClick={() => page <= data.total_pages - 1 ? setPage(page + 1) : setPage(page)}>{page + 1}</p>
+            <p className="bg-[#116466] text-white text-2xl w-auto h-full py-2 px-3 text-center rounded-lg cursor-pointer" onClick={() => page !== data.total_pages ? setPage(page + 2) : setPage(page)}>{page + 2}</p>
+          </div>
+          <button className={`bg-[#116466] text-white text-2xl py-2 px-3  rounded-lg ${page === data.last_pages ? 'opacity-50 cursor-not-allowed' : ''} `} onClick={() => handleNextPage()}><IoIosArrowForward /></button>
+          <button className={`bg-[#116466] text-white text-2xl py-2 px-3  rounded-lg ${page === data.last_pages ? 'opacity-50 cursor-not-allowed' : ''} `} onClick={() => setPage(data.total_pages)}><MdKeyboardDoubleArrowRight /></button>
+        </div>
+      </div>
+    </section >
+  )
+}
+export default Movies
