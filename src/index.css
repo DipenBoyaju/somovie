@@ -10,31 +10,35 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
-.react-slideshow-container .default-nav {
-  background-color: #FFCB9A;
-  border-radius: 5px;
-  width: 42px;
-  height: 42px;
-  right: 0;
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .react-slideshow-container .default-nav {
+    background-color: #FFCB9A;
+    border-radius: 5px;
+    width: 42px;
+    height: 42px;
+    right: 0;
+  }
+
+  .react-slideshow-container .default-nav:focus {
+    background-color: none;
+  }
+
+  .react-slideshow-container .default-nav:first-of-type {
+    bottom: 30px;
+    left: 96%;
+  }
+
+  .react-slideshow-container .default-nav:last-of-type {
+    bottom: 80px;
+    right: 12px;
+  }
+
+  .react-slideshow-container svg {
+    width: 18px;
+  }
 }
 
-.react-slideshow-container .default-nav:focus {
-  background-color: none;
-}
 
-.react-slideshow-container .default-nav:first-of-type {
-  bottom: 30px;
-  left: 96%;
-}
-
-.react-slideshow-container .default-nav:last-of-type {
-  bottom: 80px;
-  right: 12px;
-}
-
-.react-slideshow-container svg {
-  width: 18px;
-}
 
 
 /* #2C3531 black

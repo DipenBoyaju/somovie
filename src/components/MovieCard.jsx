@@ -10,7 +10,7 @@ const MovieCard = ({ item }) => {
         <div className="relative" onClick={() => nav(`/movies/${item.id}`)}>
           <span className='absolute bg-[#D1E8E2] text-[#2C3531] font-semibold px-1 rounded-sm text-sm right-0 top-2 mr-2'>HD</span>
           <img src={`https://media.themoviedb.org/t/p/w600_and_h900_bestv2/${item.poster_path}`} alt="" className='w-full rounded-lg' />
-          <span className='border border-[#FFCB9A] p-1 px-2 text-sm rounded-sm absolute bottom-0 text-[#FFCB9A] mr-2 mb-2 right-0 bg-[#ffffff20]'>Movie</span>
+          <span className='border border-[#FFCB9A] p-1 px-2 text-sm rounded-sm absolute bottom-0 text-[#FFCB9A] mr-2 mb-2 right-0 bg-[#ffffff20] backdrop-blur-3xl'>Movie</span>
         </div>
         <div className="space-y-2">
           <p className='font-semibold pt-2 text-[#D1E8E2]'>{item.title.length > 30 ? `${item.title.slice(0, 22)}...` : `${item.title}`}</p>

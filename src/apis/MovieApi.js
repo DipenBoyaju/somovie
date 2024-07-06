@@ -41,8 +41,28 @@ export const MovieApi = createApi({
           api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
         }
       })
+    }),
+
+    getMoviesByLatest: builder.query({
+      query: () => ({
+        url: 'movie/now_playing',
+        method: 'GET',
+        params: {
+          api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
+        }
+      })
+    }),
+
+    getMoviesByUpcoming: builder.query({
+      query: () => ({
+        url: 'movie/upcoming',
+        method: 'GET',
+        pparams: {
+          api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
+        }
+      })
     })
   })
 })
 
-export const { useGetAllMoviesQuery, useGetMovieByIdQuery, useGetMoviesByPopularQuery, useGetMoviesByTrendingQuery } = MovieApi;
+export const { useGetAllMoviesQuery, useGetMovieByIdQuery, useGetMoviesByPopularQuery, useGetMoviesByTrendingQuery, useGetMoviesByLatestQuery, useGetMoviesByUpcomingQuery } = MovieApi;

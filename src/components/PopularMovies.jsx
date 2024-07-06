@@ -12,15 +12,15 @@ const PopularMovies = () => {
   const tvshowQuery = useGetPopularTvShowQuery();
   const data = catt === 'Movie' ? movieQuery.data : tvshowQuery.data;
   return (
-    <section className="py-10 px-12">
+    <section className="py-10 lg:px-12 px-4">
       <div className="flex gap-8 items-center">
-        <h1 className="text-3xl font-semibold text-[#FFCB9A]">Popular</h1>
+        <h1 className="text-2xl lg:text-3xl font-semibold text-[#FFCB9A]">Popular</h1>
         <div className="flex gap-2">
-          <button className={`px-4 py-2 rounded-md flex gap-2 items-center ${catt === 'Movie' ? 'bg-yellow-500' : 'bg-white'}`} onClick={() => setCatt('Movie')}><FaPlay /> Movie</button>
-          <button className={`px-4 py-2 rounded-md flex gap-2 items-center ${catt === 'tvshow' ? 'bg-yellow-500' : 'bg-white'}`} onClick={() => setCatt('tvshow')}><FaList /> Tv Show</button>
+          <button className={`lg:px-4 lg:py-2 py-1 px-2 rounded-md flex gap-2 items-center ${catt === 'Movie' ? 'bg-yellow-500' : 'bg-white'}`} onClick={() => setCatt('Movie')}><FaPlay /> Movie</button>
+          <button className={`lg:px-4 lg:py-2 py-1 px-2 rounded-md flex gap-2 items-center ${catt === 'tvshow' ? 'bg-yellow-500' : 'bg-white'}`} onClick={() => setCatt('tvshow')}><FaList /> Tv Show</button>
         </div>
       </div>
-      <div className="py-4 grid grid-cols-6 gap-6">
+      <div className="py-4 grid grid-cols-2 lg:grid-cols-6 gap-6">
         {
           data && data.results?.slice(0, 16).map((item) => {
             return <>

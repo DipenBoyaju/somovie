@@ -4,6 +4,7 @@ import { useGetAllMoviesQuery } from "../apis/MovieApi"
 import { useState } from "react"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md"
+import { FaFilter } from "react-icons/fa"
 
 const Movies = () => {
   const [page, setPage] = useState(1)
@@ -31,8 +32,11 @@ const Movies = () => {
   return (
     <section className="container mx-auto">
       <div className="py-10 px-4 lg:px-0">
-        <div className=""><Link to={'/'}>Home</Link><span className="text-[#D1E8E2]"> / Movies</span></div>
-        <p className="text-4xl font-semibold py-6 text-[#FFCB9A]">Movie</p>
+        <div className="text-zinc-400"><Link to={'/'}>Home</Link><span className="text-[#D1E8E2]"> / Movies</span></div>
+        <div className="flex justify-between items-center">
+          <p className="text-4xl font-semibold py-6 text-[#FFCB9A]">Movies</p>
+          <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2"><FaFilter /> Filter</button>
+        </div>
         <div className="grid lg:grid-cols-6 grid-cols-2 gap-6">
           {
             data && data.results.map((item) => {
@@ -41,7 +45,7 @@ const Movies = () => {
           }
         </div>
 
-        <div className="flex gap-2 justify-center">
+        <div className="flex gap-2 justify-center pt-8">
           <button className={`bg-[#116466] text-white text-2xl py-2 px-3  rounded-lg ${page === 1 ? 'opacity-50 cursor-not-allowed' : ''} `} onClick={() => setPage(1)}><MdKeyboardDoubleArrowLeft /></button>
           <button className={`bg-[#116466] text-white text-2xl py-2 px-3  rounded-lg ${page === 1 ? 'opacity-50 cursor-not-allowed' : ''} `} onClick={() => handlePrevPage()}><IoIosArrowBack /></button>
           <div className="flex gap-2">

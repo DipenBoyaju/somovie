@@ -21,6 +21,16 @@ export const tvShowApi = createApi({
           api_key: "ce637d683aa8c718dde6b5e2b8ed0095"
         }
       })
+    }),
+
+    getLatestTvShow: builder.query({
+      query: () => ({
+        url: 'tv/on_the_air',
+        method: 'GET',
+        params: {
+          api_key: "ce637d683aa8c718dde6b5e2b8ed0095"
+        }
+      })
     })
 
     // getAllTvShows: builder.query({
@@ -35,4 +45,4 @@ export const tvShowApi = createApi({
   })
 })
 
-export const { useGetAllTvShowsQuery, useGetPopularTvShowQuery } = tvShowApi;
+export const { useGetAllTvShowsQuery, useGetPopularTvShowQuery, useGetLatestTvShowQuery } = tvShowApi;
