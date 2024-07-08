@@ -16,8 +16,8 @@ const App = () => {
       element: <RootLayout />,
       children: [
         { index: true, element: <Home /> },
-        { path: 'movies', element: <Movies /> },
-        { path: 'tvshows', element: <TvShows /> },
+        { path: 'movies', element: <TopImdb /> },
+        // { path: 'topimdb', element: <TvShows /> },
         { path: 'topimdb', element: <TopImdb /> },
         { path: 'movies/:id', element: <MovieDetail /> },
         { path: 'tvshow/:id', element: <TvShowDetail /> },

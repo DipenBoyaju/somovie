@@ -69,9 +69,9 @@ const Header = () => {
             </div>
             {showCountry && genraList()}
           </div>
-          <NavLink to={'/movies'} className={navStyle} onClick={() => showMenu(prev => !prev)}>Movies</NavLink>
-          <NavLink to={'/tvshows'} className={navStyle} onClick={() => showMenu(prev => !prev)}>TV Shows</NavLink>
-          <NavLink to={'/topimdb'} className={navStyle} onClick={() => showMenu(false)}>Top IMDB</NavLink>
+          <NavLink to={'/movies'} className={navStyle} onClick={() => showMenu(false)}>Movies</NavLink>
+          <NavLink to={'/tvshows'} className={navStyle} nClick={() => showMenu(false)}>TV Shows</NavLink>
+          <NavLink to={'/topimdb'} className={navStyle} nClick={() => showMenu(false)}>Top IMDB</NavLink>
         </nav>
         <div className="flex flex-row justify-between items-center gap-4">
           <div className="lg:flex hidden">
