@@ -5,7 +5,8 @@ import Movies from "./pages/Movies"
 import TvShows from "./pages/TvShows"
 import TopImdb from "./pages/TopImdb"
 import MovieDetail from "./features/MovieDetail"
-import Search from "./components/Search"
+import TvShowDetail from "./features/TvShowDetail"
+import Search from "./pages/Search"
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
         { path: 'tvshows', element: <TvShows /> },
         { path: 'topimdb', element: <TopImdb /> },
         { path: 'movies/:id', element: <MovieDetail /> },
+        { path: 'tvshow/:id', element: <TvShowDetail /> },
         { path: 'search', element: <Search /> }
       ]
     }

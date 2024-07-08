@@ -3,7 +3,14 @@ import { baseUrl } from "../constant/apis";
 
 export const MovieApi = createApi({
   reducerPath: 'MovieApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl}` }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${baseUrl}`,
+    prepareHeaders: (headers) => {
+      headers.set('accept', 'application/json');
+      headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZTYzN2Q2ODNhYThjNzE4ZGRlNmI1ZTJiOGVkMDA5NSIsIm5iZiI6MTcyMDQ1NTk4Mi4wNzcwMjMsInN1YiI6IjY2ODExZjMzNWNkMDlkN2ExMjQ3ZDk2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ymTADlSxLpZTFFRllvHPoNJbq5EWL4sNC9yqlnMqpK4');
+      return headers;
+    }
+  }),
   endpoints: (builder) => ({
 
     getAllMovies: builder.query({
@@ -57,7 +64,17 @@ export const MovieApi = createApi({
       query: () => ({
         url: 'movie/upcoming',
         method: 'GET',
-        pparams: {
+        params: {
+          api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
+        }
+      })
+    }),
+
+    getMovieRecommendation: builder.query({
+      query: (id) => ({
+        url: `movie/${id}/recommendations`,
+        method: 'GET',
+        params: {
           api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
         }
       })
@@ -65,4 +82,4 @@ export const MovieApi = createApi({
   })
 })
 
-export const { useGetAllMoviesQuery, useGetMovieByIdQuery, useGetMoviesByPopularQuery, useGetMoviesByTrendingQuery, useGetMoviesByLatestQuery, useGetMoviesByUpcomingQuery } = MovieApi;
+export const { useGetAllMoviesQuery, useGetMovieByIdQuery, useGetMoviesByPopularQuery, useGetMoviesByTrendingQuery, useGetMoviesByLatestQuery, useGetMoviesByUpcomingQuery, useGetMovieRecommendationQuery } = MovieApi;

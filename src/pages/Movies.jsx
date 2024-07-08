@@ -39,7 +39,7 @@ const Movies = () => {
         </div>
         <div className="grid lg:grid-cols-6 grid-cols-2 gap-6">
           {
-            data && data.results.map((item) => {
+            data && data?.results?.map((item) => {
               return <MovieCard key={item.id} item={item} />
             })
           }
