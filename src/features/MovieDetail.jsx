@@ -7,6 +7,7 @@ import MovieRecommendation from "./MovieRecommendation";
 import Casts from "../components/Casts";
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
+import RelatedMovies from "./RelatedMovies";
 
 const MovieDetail = () => {
 
@@ -105,13 +106,12 @@ const MovieDetail = () => {
       <div className="lg:px-16 hidden lg:block px-4 lg:py-4 py-2">
         <Casts movieId={id} />
       </div>
-      <div className="grid lg:grid-cols-9 px-4 py-2 lg:py-10 lg:px-16 gap-8">
-        <div className="col-span-6 h-[200px] lg:h-[450px] w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-9 px-4 py-2 lg:py-10 lg:px-16 gap-8">
+        <div className="lg:col-span-6 h-[200px] lg:h-[450px] w-full">
           <VideoPlayer movieId={id} />
         </div>
-        <div className="col-span-3 w-full">
-          <h1 className="text-2xl text-[#FFCB9A]">Related Movies</h1>
-          <hr className="border-b border-zinc-800 my-2" />
+        <div className="lg:col-span-3 w-full">
+          <RelatedMovies movieId={id} />
         </div>
       </div>
       <MovieRecommendation movieId={id} />

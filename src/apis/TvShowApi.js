@@ -51,7 +51,36 @@ export const tvShowApi = createApi({
           api_key: "ce637d683aa8c718dde6b5e2b8ed0095"
         }
       })
-    })
+    }),
+
+    getSimilarTvShow: builder.query({
+      query: (id) => ({
+        url: `tv/${id}/similar`,
+        method: 'GET',
+        params: {
+          api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
+        }
+      })
+    }),
+    getTvShowCasts: builder.query({
+      query: (id) => ({
+        url: `tv/${id}/credits`,
+        method: 'GET',
+        params: {
+          api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
+        }
+      })
+    }),
+
+    getTvShowVideo: builder.query({
+      query: (id) => ({
+        url: `tv/${id}/videos`,
+        method: 'GET',
+        params: {
+          api_key: 'ce637d683aa8c718dde6b5e2b8ed0095'
+        }
+      })
+    }),
 
     // getAllTvShows: builder.query({
     //   query: () => ({
@@ -65,4 +94,4 @@ export const tvShowApi = createApi({
   })
 })
 
-export const { useGetAllTvShowsQuery, useGetPopularTvShowQuery, useGetLatestTvShowQuery, useGetTvShowByIdQuery, useGetTvShowRecommendationQuery } = tvShowApi;
+export const { useGetAllTvShowsQuery, useGetPopularTvShowQuery, useGetLatestTvShowQuery, useGetTvShowByIdQuery, useGetTvShowRecommendationQuery, useGetSimilarTvShowQuery, useGetTvShowCastsQuery, useGetTvShowVideoQuery } = tvShowApi;
