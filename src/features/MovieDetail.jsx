@@ -1,18 +1,27 @@
 import { useParams } from "react-router-dom"
-import { useGetMovieByIdQuery } from "../apis/MovieApi";
+import { useGetMovieByIdQuery, useGetMovieCastsQuery } from "../apis/MovieApi";
 import ReactStars from "react-rating-stars-component";
 import { FaBookmark, FaCalendarWeek, FaClock } from "react-icons/fa";
 import { BiSolidDislike, BiSolidLike } from "react-icons/bi";
 import MovieRecommendation from "./MovieRecommendation";
 import Casts from "../components/Casts";
+import { useState } from "react";
+import VideoPlayer from "./VideoPlayer";
 
 const MovieDetail = () => {
 
   const { id } = useParams();
   const { data } = useGetMovieByIdQuery(id);
+  const credit = useGetMovieCastsQuery(id);
   const hrs = Math.floor((data?.runtime / 60));
   const mins = data?.runtime - (60 * hrs);
+  const [castSlice, setCastSlice] = useState(10)
   console.log(id);
+
+  const handleCast = () => {
+    setCastSlice((prev) => (prev === 10 ? 100 : 10))
+  }
+
   return (
     <main>
       <div className="">
@@ -80,6 +89,12 @@ const MovieDetail = () => {
                         return <p key={item.id}>{item.name}{index < data.production_countries.length - 1 ? ',' : ''} </p>
                       })}</span>
                     </p>
+                    <p className="text-md text-[#b8b8b8] flex flex-1 gap-2">Casts:
+                      <span className="flex flex-wrap text-white">{credit?.data?.cast?.slice(0, castSlice).map((item, index) => {
+                        return <p key={item.id}>{item?.name}{index < credit.data.cast.length - 1 ? ',' : ''} </p>
+                      })}</span>
+                    </p>
+                    <span onClick={handleCast} className="cursor-pointer text-[#24b388]">{castSlice === 10 ? 'view more' : 'view less'}</span>
                   </div>
                 </div>
               </div>
@@ -87,20 +102,12 @@ const MovieDetail = () => {
           </div>
         }
       </div>
-      <div className="lg:px-16 px-4 lg:py-10 py-2">
+      <div className="lg:px-16 hidden lg:block px-4 lg:py-4 py-2">
         <Casts movieId={id} />
       </div>
       <div className="grid lg:grid-cols-9 px-4 py-2 lg:py-10 lg:px-16 gap-8">
-        <div className="col-span-6 h-[200px] lg:h-[450px] w-full bg-zinc-800">
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.themoviedb.org/movie/823464-godzilla-x-kong-the-new-empire/watch?locale=AE"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        <div className="col-span-6 h-[200px] lg:h-[450px] w-full">
+          <VideoPlayer movieId={id} />
         </div>
         <div className="col-span-3 w-full">
           <h1 className="text-2xl text-[#FFCB9A]">Related Movies</h1>
