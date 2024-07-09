@@ -88,7 +88,7 @@ const MovieDetail = () => {
         }
       </div>
       <div className="lg:px-16 px-4 lg:py-10 py-2">
-        <Casts />
+        <Casts movieId={id} />
       </div>
       <div className="grid lg:grid-cols-9 px-4 py-2 lg:py-10 lg:px-16 gap-8">
         <div className="col-span-6 h-[200px] lg:h-[450px] w-full bg-zinc-800">
