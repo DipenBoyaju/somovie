@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSearchCollectionQuery } from '../apis/SearchApi';
 import { AiOutlinePlayCircle } from 'react-icons/ai';
+import CardSkeleton from '../components/skeleton/CardSkeleton';
 
 const Search = () => {
   const location = useLocation();
@@ -10,7 +11,15 @@ const Search = () => {
 
   const { data, error, isLoading } = useSearchCollectionQuery({ query: searchInput, page: 1 });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="grid lg:grid-cols-6 grid-cols-2 gap-6 py-16">
+        {[...Array(12)].map((_, index) => (
+          <CardSkeleton key={index} height={300} />
+        ))}
+      </div>
+    );
+  }
   if (error) return <p>Error: {error.message}</p>;
 
   return (

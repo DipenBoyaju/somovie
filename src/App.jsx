@@ -7,6 +7,8 @@ import TopImdb from "./pages/TopImdb"
 import MovieDetail from "./features/MovieDetail"
 import TvShowDetail from "./features/TvShowDetail"
 import Search from "./pages/Search"
+import Login from "./auth/Login"
+import SignUp from "./auth/SignUp"
 
 const App = () => {
 
@@ -21,7 +23,10 @@ const App = () => {
         { path: 'topimdb', element: <TopImdb /> },
         { path: 'movies/:id', element: <MovieDetail /> },
         { path: 'tvshow/:id', element: <TvShowDetail /> },
-        { path: 'search', element: <Search /> }
+        { path: 'search', element: <Search /> },
+
+        { path: 'login', element: <Login /> },
+        { path: 'signup', element: <SignUp /> },
       ]
     }
   ])

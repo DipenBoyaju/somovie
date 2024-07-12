@@ -6,11 +6,19 @@ import { IoMdArrowDroprightCircle } from 'react-icons/io';
 import { MdDateRange } from 'react-icons/md';
 import { IoTime } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+import HeroSkeleton from './skeleton/HeroSkeleton';
 
 const Hero = () => {
 
-  const { data } = useGetMoviesByPopularQuery();
+  const { data, isLoading } = useGetMoviesByPopularQuery();
   const nav = useNavigate();
+
+  if (isLoading) {
+    return <>
+      <HeroSkeleton />
+    </>
+  }
 
   return (
     <div className="slide-container relative w-full">

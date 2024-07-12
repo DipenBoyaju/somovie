@@ -5,6 +5,7 @@ import './index.css'
 import store from './app/store.js'
 import { Provider } from 'react-redux'
 import 'swiper/css';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

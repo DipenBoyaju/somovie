@@ -5,10 +5,21 @@ import { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md"
 import { FaFilter } from "react-icons/fa";
+import CardSkeleton from "../components/skeleton/CardSkeleton";
 
 const TvShows = () => {
   const [page, setPage] = useState(1)
-  const { data } = useGetAllTvShowsQuery({ page });
+  const { data, isLoading } = useGetAllTvShowsQuery({ page });
+
+  if (isLoading) {
+    return (
+      <div className="grid lg:grid-cols-6 grid-cols-2 gap-6 py-16">
+        {[...Array(12)].map((_, index) => (
+          <CardSkeleton key={index} height={300} />
+        ))}
+      </div>
+    );
+  }
 
   const handlePrevPage = () => {
     if (data.page > 1) {

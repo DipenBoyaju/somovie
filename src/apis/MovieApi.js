@@ -14,10 +14,13 @@ export const MovieApi = createApi({
   endpoints: (builder) => ({
 
     getAllMovies: builder.query({
-      query: ({ page = 1 }) => ({
-        url: `discover/movie?api_key=ce637d683aa8c718dde6b5e2b8ed0095&page=${page}`,
-        method: 'GET'
-      })
+      query: ({ page = 1, filterData = [] }) => {
+        const genreQuery = filterData.length > 0 ? `&with_genres=${filterData.join(',')}` : '';
+        return {
+          url: `discover/movie?api_key=YOUR_API_KEY&page=${page}${genreQuery}`,
+          method: 'GET',
+        };
+      },
     }),
 
     getMovieById: builder.query({

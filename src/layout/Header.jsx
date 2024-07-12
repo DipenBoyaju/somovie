@@ -80,11 +80,11 @@ const Header = () => {
               <button><LuSearch className="text-xl" /></button>
             </form>
           </div>
-          <button className="bg-[#FFCB9A] text-[#2C3531] text-lg lg:px-8 px-4 py-1 lg:py-2 rounded-3xl hover:bg-[#D1E8E2] transition-all hover:text-[#2C3531]">Login</button>
+          <button className="bg-[#FFCB9A] text-[#2C3531] text-lg lg:px-8 px-4 py-1 lg:py-2 rounded-3xl hover:bg-[#D1E8E2] transition-all hover:text-[#2C3531]" onClick={() => navigate('/login')}>Login</button>
         </div>
       </header>
       <div className="lg:hidden flex justify-center items-center pb-4">
-        <form onSubmit={handleSearchSubmit} className="relative items-center flex flex-col">
+        <form onSubmit={handleSearchSubmit} className="relative items-center flex flex-col" >
           <input type="text" className="w-[100%] h-[40px] focus:outline-none p-2 rounded-md" onChange={(e) => setSearchInput(e.target.value)} value={searchInput} />
           <button className="absolute place-self-end mt-2 mr-2"><LuSearch className="text-xl" /></button>
         </form>

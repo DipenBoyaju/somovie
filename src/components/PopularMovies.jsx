@@ -11,6 +11,10 @@ const PopularMovies = () => {
   const movieQuery = useGetMoviesByPopularQuery();
   const tvshowQuery = useGetPopularTvShowQuery();
   const data = catt === 'Movie' ? movieQuery.data : tvshowQuery.data;
+
+  if (movieQuery.isLoading) {
+    return <h1>Loading</h1>
+  }
   return (
     <section className="py-10 lg:px-12 px-4">
       <div className="flex gap-8 items-center">

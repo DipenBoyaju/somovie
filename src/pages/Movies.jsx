@@ -5,13 +5,28 @@ import { useState } from "react"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md"
 import { FaFilter } from "react-icons/fa"
+import CardSkeleton from "../components/skeleton/CardSkeleton"
+import Filter from "../components/Filter"
 
 const Movies = () => {
   const [page, setPage] = useState(1)
-  const { data, isFetching } = useGetAllMoviesQuery({ page });
+  const [filterData, setFilterData] = useState([]);
+  const { data, isLoading } = useGetAllMoviesQuery({ page, filterData });
+  const [showFilter, setShowFilter] = useState(false);
 
-  if (isFetching) {
-    return <h1>Loading</h1>
+
+  const genreData = (v) => {
+    setFilterData(v)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="grid lg:grid-cols-6 grid-cols-2 gap-6 py-16">
+        {[...Array(12)].map((_, index) => (
+          <CardSkeleton key={index} height={300} />
+        ))}
+      </div>
+    );
   }
 
   const handlePrevPage = () => {
@@ -35,7 +50,10 @@ const Movies = () => {
         <div className="text-zinc-400"><Link to={'/'}>Home</Link><span className="text-[#D1E8E2]"> / Movies</span></div>
         <div className="flex justify-between items-center">
           <p className="text-4xl font-semibold py-6 text-[#FFCB9A]">Movies</p>
-          <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2"><FaFilter /> Filter</button>
+          <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2" onClick={() => setShowFilter(prev => !prev)}><FaFilter /> Filter</button>
+        </div>
+        <div className="transition-all duration-700">
+          {showFilter ? <Filter filterValue={genreData} /> : ''}
         </div>
         <div className="grid lg:grid-cols-6 grid-cols-2 gap-6">
           {
