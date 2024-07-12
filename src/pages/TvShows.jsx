@@ -54,7 +54,7 @@ const TvShows = () => {
           <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2" onClick={() => setShowFilter(prev => !prev)}><FaFilter /> Filter</button>
         </div>
         <div className="transition-all duration-700">
-          {showFilter ? <Filter filterValue={genreData} /> : ''}
+          {showFilter ? <Filter filterValue={genreData} setShowFilter={setShowFilter} /> : ''}
         </div>
         <div className="grid lg:grid-cols-6 grid-cols-2 gap-6">
           {

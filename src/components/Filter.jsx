@@ -4,7 +4,7 @@ import axios from "axios";
 import { LuSearch } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
 
-const Filter = ({ filterValue }) => {
+const Filter = ({ filterValue, setShowFilter }) => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,6 +46,7 @@ const Filter = ({ filterValue }) => {
 
   const handleFilter = () => {
     filterValue(selectedGenres);
+    setShowFilter(false);
   };
 
   if (loading) {
