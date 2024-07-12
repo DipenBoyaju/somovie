@@ -6,10 +6,18 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md"
 import { FaFilter } from "react-icons/fa";
 import CardSkeleton from "../components/skeleton/CardSkeleton";
+import Filter from "../components/Filter";
 
 const TvShows = () => {
   const [page, setPage] = useState(1)
-  const { data, isLoading } = useGetAllTvShowsQuery({ page });
+  const [filterData, setFilterData] = useState([]);
+  const { data, isLoading } = useGetAllTvShowsQuery({ page, filterData });
+  const [showFilter, setShowFilter] = useState(false);
+
+  const genreData = (v) => {
+    setFilterData(v)
+  }
+
 
   if (isLoading) {
     return (
@@ -40,16 +48,23 @@ const TvShows = () => {
     <section className="container mx-auto">
       <div className="py-10 px-4 lg:px-0">
         <div className=""></div>
-        <div className=""><Link to={'/'}>Home</Link><span className="text-[#D1E8E2]"> / Tv Show</span></div>
+        <div className=""><Link to={'/'} className="text-zinc-400">Home</Link><span className="text-[#D1E8E2]"> / Tv Show</span></div>
         <div className="flex justify-between items-center">
           <p className="text-4xl font-semibold py-6 text-[#FFCB9A]">Tv Shows</p>
-          <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2"><FaFilter /> Filter</button>
+          <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2" onClick={() => setShowFilter(prev => !prev)}><FaFilter /> Filter</button>
+        </div>
+        <div className="transition-all duration-700">
+          {showFilter ? <Filter filterValue={genreData} /> : ''}
         </div>
         <div className="grid lg:grid-cols-6 grid-cols-2 gap-6">
           {
-            data && data?.results?.map((item) => {
-              return <TvShowCard key={item.id} item={item} />
-            })
+            data && data.results && data.results.length > 0 ? (
+              data.results.map((item) => (
+                <TvShowCard key={item.id} item={item} />
+              ))
+            ) : (
+              <div>No TV shows found.</div>
+            )
           }
         </div>
 

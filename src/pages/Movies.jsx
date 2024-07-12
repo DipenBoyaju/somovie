@@ -47,7 +47,7 @@ const Movies = () => {
   return (
     <section className="container mx-auto">
       <div className="py-10 px-4 lg:px-0">
-        <div className="text-zinc-400"><Link to={'/'}>Home</Link><span className="text-[#D1E8E2]"> / Movies</span></div>
+        <div className="text-zinc-400"><Link to={'/'} className="text-zinc-400">Home</Link><span className="text-[#D1E8E2]"> / Movies</span></div>
         <div className="flex justify-between items-center">
           <p className="text-4xl font-semibold py-6 text-[#FFCB9A]">Movies</p>
           <button className="bg-[#116466] text-[#fff] px-4 py-2 rounded-sm flex items-center gap-2" onClick={() => setShowFilter(prev => !prev)}><FaFilter /> Filter</button>

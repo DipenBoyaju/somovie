@@ -2,17 +2,20 @@ import { useEffect, useState } from "react"
 import { baseUrl } from "../constant/apis";
 import axios from "axios";
 import { LuSearch } from "react-icons/lu";
+import { useLocation } from "react-router-dom";
 
 const Filter = ({ filterValue }) => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedGenres, setSelectedGenres] = useState([]);
+  const location = useLocation()
 
   useEffect(() => {
     const fetchGenre = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/genre/movie/list`, {
+        const endpoint = location.pathname.includes('movies') ? "genre/movie/list" : "genre/tv/list"
+        const response = await axios.get(`${baseUrl}/${endpoint}`, {
           headers: {
             accept: 'application/json',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZTYzN2Q2ODNhYThjNzE4ZGRlNmI1ZTJiOGVkMDA5NSIsIm5iZiI6MTcyMDc4MDY3NS45MDQ1MzMsInN1YiI6IjY2ODExZjMzNWNkMDlkN2ExMjQ3ZDk2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7XVRr59RETXiGVREA7BJmFnAfw_MGym4wOB2DLeggOU'
